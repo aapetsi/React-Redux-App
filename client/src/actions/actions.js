@@ -1,7 +1,12 @@
-import axios from "axios";
+import axios from 'axios'
 
-const FETCH_CHARACTERS = "FETCH_CHARACTERS";
+export const FETCH_CHARACTERS = 'FETCH_CHARACTERS'
 
-const fetchCharacters = () => ({
-  type: FETCH_CHARACTERS
-});
+export const fetchCharacters = () => dispatch => {
+  axios.get('/characters').then(res => {
+    dispatch({
+      type: FETCH_CHARACTERS,
+      payload: res.data
+    })
+  })
+}
